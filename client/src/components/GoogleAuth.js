@@ -1,12 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { googleClientId } from '../config';
+import { signIn, signOut } from '../actions';
 
 export class GoogleAuth extends Component {
-
-  state = {
-    isSignedIn: null
-  }
 
   componentDidMount() {
     window.gapi.load("client:auth2", () => {
@@ -15,21 +12,17 @@ export class GoogleAuth extends Component {
         scope: 'email'
       }).then(() => {
         this.auth = window.gapi.auth2.getAuthInstance();
-        this.onAuthChange();
+        this.onAuthChange(this.auth.isSignedIn.get())
         this.auth.isSignedIn.listen(this.onAuthChange);
       });
     });
   }
 
-  onAuthChange = () => {
-
-    this.setState({ isSignedIn: this.auth.isSignedIn.get() })
-  }
 
   renderAuthButton() {
-    if (this.state.isSignedIn === null) {
+    if (this.props.isSignedIn === null) {
       return null;
-    } else if (this.state.isSignedIn) {
+    } else if (this.props.isSignedIn) {
       return (<div>
         <button
           className="ui red google button"
@@ -37,7 +30,7 @@ export class GoogleAuth extends Component {
         >
           <i className="google icon" />
           Sign Out
-      </button>
+        </button>
       </div>);
     } else {
       return (<div>
@@ -47,8 +40,16 @@ export class GoogleAuth extends Component {
         >
           <i className="google icon" />
           Sign In with Google
-      </button>
+          </button>
       </div>);
+    }
+  }
+
+  onAuthChange = (isSignedIn) => {
+    if (isSignedIn) {
+      this.props.signIn(this.auth.currentUser.get().getId());
+    } else {
+      this.props.signOut();
     }
   }
 
@@ -69,12 +70,11 @@ export class GoogleAuth extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-
-})
-
-const mapDispatchToProps = {
-
+const mapStateToProps = (state) => {
+  return {
+    isSignedIn: state.auth.isSignedIn
+  }
 }
 
-export default (GoogleAuth)
+
+export default connect(mapStateToProps, { signIn, signOut })(GoogleAuth)
