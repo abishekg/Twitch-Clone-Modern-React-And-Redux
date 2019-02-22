@@ -1,18 +1,21 @@
 {
   "streams": [
     {
-      "title": "asd",
-      "description": "asd",
+      "title": "Hello Boss!",
+      "description": "Whats up?",
+      "userId": "111886089936234081061",
       "id": 1
     },
     {
-      "description": "Here's Some Stream",
-      "title": "My Stream",
+      "title": "Hello Alpha Ori",
+      "description": "Chennai Office",
+      "userId": "111886089936234081061",
       "id": 2
     },
     {
-      "title": "asd",
-      "description": "asdqwe",
+      "title": "Numbers",
+      "description": "12345",
+      "userId": "111886089936234081061",
       "id": 3
     }
   ]
