@@ -49,10 +49,6 @@ export class StreamCreate extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-
-}
-
 const validate = (formValues) => {
   const errors = {};
 

@@ -19,23 +19,15 @@ export class App extends Component {
           <div>
             <Header />
             <Route path="/" exact component={StreamList} />
-            <Route path="/streams/new" component={StreamCreate} />
-            <Route path="/streams/edit" component={StreamEdit} />
-            <Route path="/streams/delete" component={StreamDelete} />
-            <Route path="/streams/show" component={StreamShow} />
+            <Route path="/streams/new" exact component={StreamCreate} />
+            <Route path="/streams/edit/:id" exact component={StreamEdit} />
+            <Route path="/streams/delete/:id" exact component={StreamDelete} />
+            <Route path="/streams/show/:id" exact component={StreamShow} />
           </div>
         </Router>
       </div>
     )
   }
-}
-
-const mapStateToProps = (state) => {
-
-}
-
-const mapDispatchToProps = {
-
 }
 
 export default (App)
