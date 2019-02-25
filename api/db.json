@@ -1,18 +1,6 @@
 {
   "streams": [
     {
-      "title": "Hello Boss!",
-      "description": "Whats up?",
-      "userId": "111886089936234081061",
-      "id": 1
-    },
-    {
-      "title": "Hello Alpha Ori Chennai",
-      "description": "Chennai Office",
-      "userId": "111886089936234081061",
-      "id": 2
-    },
-    {
       "title": "Enter Numbers",
       "description": "123456789101112",
       "id": 3
